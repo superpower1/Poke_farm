@@ -1,0 +1,7 @@
+{
+  "name": "pokemon",
+  "private": true,
+  "dependencies": {
+    "fetch-rails": "^0.5.4"
+  }
+}
