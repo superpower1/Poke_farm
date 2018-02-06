@@ -1,0 +1,30 @@
+
+<div class="shop_container"> 
+	<h2>Poke Shop</h2>
+	<div class="buy_and_sell_boxes">
+	    <% @shops.each do |shop| %>
+			<div class="items_for_buy">
+			    <img src="<%= shop.img_url %>" class="items_buy_img" style="width: 40%"> 
+			    <p><%= shop.name %><button>+<span class="itemQuatity">0</span></button></p>
+			    <p><span class="dorllar_sign">$</span><span class="items_buy_price"><%= shop.price %></span></p>
+			</div>
+	  	<% end %>
+
+	  	<div class="items_for_sell">
+	  		<img src="" style="width: 30%" class="items_sell_img"> 
+			    <p>name :</p>
+			    <p><span>$</span></p>
+			    <button>+<span>0</span></button>
+	  	</div>
+  	</div>
+</div>
+
+<script>
+	console.log("ready for poke farm");
+	var loveFace = document.querySelector(".wrapper");		
+        loveFace.addEventListener('click', function(event){
+    		var heartCount = document.querySelector(".heartCount");
+    			heartCount.textContent = Number(heartCount.textContent) + 1 ;
+     }); 
+
+</script>
