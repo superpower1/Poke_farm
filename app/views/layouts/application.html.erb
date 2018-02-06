@@ -16,6 +16,9 @@
   </head>
 
   <body>
+    <% if session[:user_id] %>
+    <%= session[:user_id] %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
