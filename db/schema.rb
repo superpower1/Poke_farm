@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205223839) do
+ActiveRecord::Schema.define(version: 20180206001914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20180205223839) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "img_url"
   end
 
   create_table "species", force: :cascade do |t|
@@ -94,6 +95,8 @@ ActiveRecord::Schema.define(version: 20180205223839) do
     t.text "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "ball"
+    t.integer "money"
   end
 
   add_foreign_key "my_pokemons", "species"
