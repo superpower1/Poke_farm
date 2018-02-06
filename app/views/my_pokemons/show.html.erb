@@ -4,7 +4,16 @@
 <a href="/species"><button>Pokedex</button></a>
 <a href="/species"><button>Pokeshop</button></a>
 <div class="farm">
-	
+	<% @pokemons.each do |pokemon| %>
+	<div class="pokemon">
+		<div><%= pokemon.nickname %></div>
+		<div><%= pokemon.level %></div>
+		<div><img src=<%= pokemon.species.img_url %>></div>
+		<%# if pokemon.ready_for_evolution %>
+		<!-- <button class="evolute" id =<%= pokemon.id %>>Evolute</button> -->
+		<%# end %>
+	</div>
+	<% end %>
 </div>
 <table class="showList">
 	<tr>
@@ -36,7 +45,7 @@
 	document.querySelector('.showList').addEventListener('click',function(event){
 		if(event.target.className === "evolute"){
 			console.log(event.target.id)
-			var url = './my_pokemons/'+event.target.id;
+			var url = './'+event.target.id;
 			var data = {
 
 			};
@@ -62,5 +71,6 @@
 			});
 		}
 	})
+
 </script>
 
