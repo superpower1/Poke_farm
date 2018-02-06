@@ -44,8 +44,8 @@ class MyPokemonsController < ApplicationController
 	end
 
 	def show
-		# @pokemons = MyPokemon.where(user_id:params[:id])
-		@pokemons = MyPokemon.all
+		@pokemons = MyPokemon.where(user_id:session[:user_id])
+		# @pokemons = MyPokemon.all
 
 		@pokemons.each{|pokemon|
 
