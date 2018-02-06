@@ -1,30 +1,64 @@
-
-<div class="shop_container"> 
 	<h2>Poke Shop</h2>
-	<div class="buy_and_sell_boxes">
-	    <% @shops.each do |shop| %>
-			<div class="items_for_buy">
-			    <img src="<%= shop.img_url %>" class="items_buy_img" style="width: 40%"> 
-			    <p><%= shop.name %><button>+<span class="itemQuatity">0</span></button></p>
-			    <p><span class="dorllar_sign">$</span><span class="items_buy_price"><%= shop.price %></span></p>
-			</div>
-	  	<% end %>
 
-	  	<div class="items_for_sell">
-	  		<img src="" style="width: 30%" class="items_sell_img"> 
-			    <p>name :</p>
-			    <p><span>$</span></p>
-			    <button>+<span>0</span></button>
+	<div class="shop_container">
+	
+		<div class="buyBox">
+
+			    <% @shops.each do |shop| %>
+					<!-- <div class="gridItemsForBuy"> -->
+
+						<div class="imgNDetail">
+						    <img src="<%= shop.img_url %>" class="itemsBuyImg" style="width: 20%"> 
+						    <div class="nameAndPrice">
+							    <p><%= shop.name %></p>
+							    <p>$10</p>
+						    </div>
+					    </div>				   
+					   <div class="">
+						    <button class="itemBuyBtn">
+						    	<p>
+						    		<img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/ultra-glossy-silver-buttons-icons-arrows/009917-ultra-glossy-silver-button-icon-arrows-triangle-solid-left.png" style="width: 13%"><span class="itemBuyQuantity">0</span><img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/ultra-glossy-silver-buttons-icons-arrows/009917-ultra-glossy-silver-button-icon-arrows-triangle-solid-left.png" style="width: 13%">
+						    		<span class="dorllarSign">$</span><span class="itemBuyPrice"><%= shop.price %></span>
+						    	</p>
+						    </button>
+						   
+					    </div>
+					
+					<!-- </div> -->
+			  	<% end %>
+		  	
+		 </div> 	
+
+	  	<div class="itemsForSell">
+	
+			    <% @pokemons. each do |pokemon| %>
+				    
+				    	<label class="sellCheckbox">
+				    		<img src="<%= pokemon.species.img_url %>" style="width: 40%" class="itemsSellImg"> 
+				    		<p><%= pokemon.nickname %>  |</p>
+						    <p>Level: <%= pokemon.level %>  |</p>
+						    <p><span class="">$20</span>   |</p>
+				    		<p><input type="checkbox" checked="checked"></p>							    
+					    </label>
+					
+			    <% end %>
+			    
+			    <button>Add Pokemons in the shop</button>
+
 	  	</div>
-  	</div>
+
+  	
 </div>
 
 <script>
 	console.log("ready for poke farm");
-	var loveFace = document.querySelector(".wrapper");		
-        loveFace.addEventListener('click', function(event){
-    		var heartCount = document.querySelector(".heartCount");
-    			heartCount.textContent = Number(heartCount.textContent) + 1 ;
+	var itemBuyBtn = document.querySelector(".itemBuyBtn");		
+        itemBuyBtn.addEventListener('click', function(event){
+    		var itemBuyQuantity = document.querySelector(".itemBuyQuantity");
+    			itemBuyQuantity.textContent = Number(itemBuyQuantity.textContent) + 1 ;
+    		var itemBuyPrice = document.querySelector(".itemBuyPrice");
+    			itemBuyPrice.textContent = Number(itemBuyQuantity.textContent) * 10;
      }); 
-
+     	 
+// <button>+<span class="itemSellQuatity">0</span></button>
 </script>

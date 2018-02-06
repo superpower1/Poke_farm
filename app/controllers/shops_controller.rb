@@ -2,8 +2,11 @@ class ShopsController < ApplicationController
 
 	def index
 		@shops = Shop.all
-		# @pokemons = MyPokemon.find(params[:id])
+		@pokemons = MyPokemon.where(user_id: '1')	
+
 	end
+
+
 
 
 end
