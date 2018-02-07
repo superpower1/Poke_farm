@@ -23,4 +23,19 @@ class TeamsController < ApplicationController
 		new_team.save
 		redirect_to "/teams"
 	end
+
+	def get_user_team_api
+		teams = User.find_by(id:params[:name]).teams
+		@team_data = {}
+		teams.each do |team|
+			tmpData = []
+			team.pokemons.each do |pokemon|
+				tmpData.push(pokemon)
+			end
+			@team_data[team.name]=tmpData
+		end
+
+
+		render :json => @team_data
+	end
 end
