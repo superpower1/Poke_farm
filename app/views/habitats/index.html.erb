@@ -24,7 +24,24 @@
 <script type="text/javascript">
   $('.habitat').on('click', e=>{
     console.log(e.target.value)
-    #.ajax
+
+    var url = '/api/teams/get_user_team_api?name=<%= session[:user_id] %>'
+
+    fetch(url)
+    .then(function(response) {
+      return response.json();
+    }).then(function(teams) {
+      console.log(teams);
+      for (var num in teams){
+        console.log(teams[num]);
+        var teamContainer = $('<tr>')
+        var teamName = $('<td>')
+        teamName.innerHTML = teams[num].team_id
+        teamContainer.append()
+      }
+    }).catch(function(e) {
+      console.log("Oops, error");
+    });
 
     $('.teamSelectContainer')
   })
