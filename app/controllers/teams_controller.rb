@@ -3,18 +3,14 @@ class TeamsController < ApplicationController
 
 	def index
 		@teams = Team.where(user_id: session[:user_id])
+		@my_pokemons = MyPokemon.where(user_id: session[:user_id])
 	end
 
 	def update
-		@team = Team.find_by(id:params[:id])
-		@team.name = params[:name]
-		@team.member_1 = params[:member_1]
-		@team.member_2 = params[:member_2]
-		@team.member_3 = params[:member_3]
-		@team.member_4 = params[:member_4]
-		@team.member_5 = params[:member_5]
-		@team.save
-		render :json => @team
+		pokemon = MyPokemon.find_by(id: params[:my_pokemon_id])
+		pokemon.team_id = params[:id]
+		pokemon.save
+		redirect_to '/teams'
 	end
 
 	def create

@@ -40,7 +40,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <p>My pokemon list</p>
+        <form class="update-team" action="" method="post">
+          <h4>My pokemon list</h4>
+          <input type="hidden" name="_method" value="put">
+          <select name="my_pokemon_id">
+          <% @my_pokemons.each do |pokemon| %>
+            <option value="<%= pokemon.id %>"><%= pokemon.species.identifier %>(<%= pokemon.nickname %>)</option>
+          <% end %>
+          </select>
+          <button type="submit" name="button">Add</button>
+        </form>
       </div>
     </div>
   </div>
@@ -48,8 +57,8 @@
 
 <script type="text/javascript">
   $('.add-team-pokemon').on('click', e=>{
-    console.log(e.target.id);
-
+    const teamId = e.target.id;
+    $('.update-team').attr('action', `/teams/${teamId}`);
   })
 </script>
 
