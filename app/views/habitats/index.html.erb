@@ -1,8 +1,7 @@
-
 <div class="habitats">
   <% @habitats.each do |habitat| %>
     <div class="habitat">
-      <a href="#teams" data-toggle="modal"><%= habitat.identifier %></a>
+      <a href="#teams" data-toggle="modal" ><button value=<%= habitat.id %>><%= habitat.identifier %></button></a>
     </div>
   <% end %>
 </div>
@@ -16,6 +15,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <p>Teams</p>
+        <div class="teamSelectContainer"></div>
       </div>
     </div>
   </div>
@@ -23,6 +23,9 @@
 
 <script type="text/javascript">
   $('.habitat').on('click', e=>{
+    console.log(e.target.value)
+    #.ajax
 
+    $('.teamSelectContainer')
   })
 </script>
