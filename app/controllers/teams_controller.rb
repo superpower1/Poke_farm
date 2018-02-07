@@ -1,8 +1,8 @@
 class TeamsController < ApplicationController
 	skip_before_action :verify_authenticity_token
-	
+
 	def index
-		@teams = Team.all
+		@teams = Team.where(user_id: session[:user_id])
 	end
 
 	def update
@@ -21,7 +21,6 @@ class TeamsController < ApplicationController
 		new_team = Team.new
 		new_team.user_id = session[:user_id]
 		new_team.save
-
-		redirect_to "/teams/"
+		redirect_to "/teams"
 	end
 end
