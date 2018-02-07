@@ -12,4 +12,9 @@ class SpeciesController < ApplicationController
 		end
 		render :json => @specie
 	end
+
+	def get_team_member_api
+		@
+		render :json => @specie
+	end
 end
