@@ -1,20 +1,23 @@
 <h1>Species</h1>
 <div class="search">
-	<input type="text" name="search" placeholder="Input a pokemon name">
-	<button>enter</button>
+		<input class="input" type="text" name="identifier" placeholder="Input a pokemon name">
+		<button>enter</button>
 </div>
 
-<div class="answerContainer"></div>
+<div id="result-box">
+
+</div>
+
 <table>
-	<tr>
-    <th>name</th>
-    <th>height</th> 
-    <th>weight</th>
-    <th>color</th>
-    <th>shape</th>
-    <th>habitat</th>
-    <th>image</th>
-  </tr>
+		<tr>
+	    <th>name</th>
+	    <th>height</th>
+	    <th>weight</th>
+	    <th>color</th>
+	    <th>shape</th>
+	    <!-- <th>habitat</th> -->
+	    <th>image</th>
+	  </tr>
 	<% @species.each do |species| %>
 		<tr>
 			<td><%= species.identifier %></td>
@@ -22,36 +25,59 @@
 			<td><%= species.weight/10.0 %></td>
 			<td><%= species.color %></td>
 			<td><%= species.shape %></td>
-			<td><%= species.habitats.first.identifier %></td>
+			<!-- <td><%= species.habitats.first.identifier %></td> -->
 			<td><img src=<%= species.img_url %>></td>
 		</tr>
 	<% end %>
-		
 </table>
+<%= will_paginate @species %>
 
+<script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
 <script type="text/javascript">
-document.querySelector('.search').querySelector('button').addEventListener("click",function(){
-	var inputContent = document.querySelector('.search').querySelector('input').value;
-	console.log('/species/show?identifier='+ inputContent)
-	fetch('/species/show?identifier='+ inputContent)
-	.then(function(response) {
-		return response.text();
-	})
-	.then(function(data) {
-		var seatchResult = JSON.parse(data);
-		console.log(seatchResult);
-		
-		var newDiv = document.createElement('div');
-		var newImg = document.createElement('img');
-		var newP = document.createElement('p');
+	$('button').click(function() {
+		var $list = $('.result')
+    $list.children().remove()
 
-		newImg.src = seatchResult.img_url;
-		newP.innerHTML = seatchResult.identifier;
+		var options = {
+			url: '/api_index',
+			data: { identifier: $('.input').val()}
+		}
 
-		newDiv.appendChild(newImg)
-		newDiv.appendChild(newP);
+		$.ajax(options).done(function(response) {
+			console.log(response.length)
+			var tag = ['name','height','weight','color','shape','image']
+			var $tr = $('<tr>').addClass('pop-tr'); //create a new <tr></tr>
+			for(i=0; i<tag.length; i++){
+			    var content = '<th>' + tag[i]+ '</th>'
+					$tr.append(content) //add <th></th> to <tr></tr>
+			 }
+			 var $table = $('<table>').addClass('pop-table')
+			 $table.append($tr);
+			 $('#result-box').append($table);
 
-		document.querySelector('.answerContainer').appendChild(newDiv);
-	})
-})
+			 for (var i = 0; i < response.length; i++) {
+ 				console.log(response[i].identifier);
+          var $tr_1 = $('<tr>').addClass('pop-tr')
+			 		var content = '<td>' + response[i].identifier + '</td>'
+			 			$tr_1.append(content)
+						content = '<td>' + response[i].height/10.0+ '</td>'
+						$tr_1.append(content)
+			 			content = '<td>' + response[i].weight/10.0 + '</td>'
+			 			$tr_1.append(content)
+						content = '<td>' + response[i].color + '</td>'
+            $tr_1.append(content)
+						content = '<td>' + response[i].shape + '</td>'
+            $tr_1.append(content)
+            $img = $('<img>').attr('src', response[i].img_url)
+						content = $('<td>').append($img)
+			 			$tr_1.append(content)
+						$table.append($tr_1);
+			 }//for
+			 $('#result-box').append($table);
+			 $('#result-box').addClass('result');
+    }); //$.ajax
+  });//$('button').click
 </script>
