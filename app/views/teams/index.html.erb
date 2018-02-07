@@ -119,10 +119,12 @@ teamList.addEventListener("click",function(){
 			console.log('Success:', response);
 		});
 	}
+
+	
 })
 
 //search pokemon in my_pokemon table
-teamList.addEventListener("keyup",function(){
+teamList.addEventListener("keyup",function(event){
 	console.log(event.target)
 	if(
 		event.target.className == "member1" ||
@@ -148,11 +150,19 @@ teamList.addEventListener("keyup",function(){
 		.catch(error => console.error('Error:', error))
 		.then(response => {
 			console.log('Success:', response);
-			var newDiv = document.createElement("div");
-			var newP = document.createElement("p");
-			var newImg = document.createElement("img");
-			newDiv.appendChild()
-			answerContainer.innerHTML = response[0].id;
+
+			answerContainer.innerHTML = '';
+			response.forEach(function(pokemon){
+				var newP = document.createElement("p");
+				var newDiv = document.createElement("div");
+				
+				newDiv.addEventListener("click",function(anotherEvent){
+					event.target.value = anotherEvent.target.innerHTML;
+				})
+				newP.innerHTML = pokemon.nickname;
+				newDiv.appendChild(newP);
+				answerContainer.appendChild(newDiv);
+			})
 		});
 	}
 })
