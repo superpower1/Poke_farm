@@ -29,7 +29,7 @@ class TeamsController < ApplicationController
 			team.pokemons.each do |pokemon|
 				tmpData.push(pokemon)
 			end
-			@team_data[team.name]=tmpData
+			@team_data[team.id]=tmpData
 		end
 
 

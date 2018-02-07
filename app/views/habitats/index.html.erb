@@ -15,7 +15,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <p>Teams</p>
-        <div class="teamSelectContainer"></div>
+        <div class="teams"></div>
       </div>
     </div>
   </div>
@@ -33,12 +33,14 @@
     }).then(function(teams) {
       console.log(teams);
       for (var num in teams){
-        console.log(teams[num]);
+        // console.log(teams[num]);
+        console.log(num);
         var teamContainer = $('<tr>')
         var teamName = $('<td>')
-        teamName.innerHTML = teams[num].team_id
-        teamContainer.append()
-      }
+        teamName.text(num)
+        teamContainer.append(teamName)
+        $('.teams').append(teamContainer)
+      } 
     }).catch(function(e) {
       console.log("Oops, error");
     });
