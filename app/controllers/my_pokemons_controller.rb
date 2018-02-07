@@ -101,11 +101,11 @@ class MyPokemonsController < ApplicationController
 			new_pokemon.nickname = params[:nickname]
 			new_pokemon.level = params[:level]
 			new_pokemon.exp = 0
-			new_pokemon.user_id = session[:id]
+			new_pokemon.user_id = session[:user_id]
 			new_pokemon.growth_rate = pokemon.growth_rate
 			new_pokemon.save
 
-			redirect_to '/my_pokemons'
+			redirect_to "/my_pokemons/#{session[:user_id]}"
 		else
 			redirect_to '/'
 		end
