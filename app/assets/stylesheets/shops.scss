@@ -16,10 +16,10 @@
 	 /*flex-wrap: wrap;*/
  /* grid-gap: 5px 5px;
   grid-template-columns: auto auto ;*/
-  //background-color: #2196F3;
+ /* //background-color: #2196F3;
   flex-direction: column;
   padding: 5px;
-  padding-right: 10spx;
+  padding-right: 10spx;*/
 }
 /*.gridItemsForBuy {
 	border: 2px solid darkblue;
@@ -34,12 +34,18 @@
 .nameAndPrice {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-around;
+	text-align: center;
 }
 
+.btnBox {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
 .sellBox {
 	border: 2px solid darkblue;
-	width: 40%;
+	width: 35%;
 	padding-left: 15px;
 }
 
