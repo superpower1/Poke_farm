@@ -10,6 +10,7 @@
 
 }
 .buyBox {
+	border: 2px solid orange;
 	width: 55%;
 	display: grid;
 	 /*flex-wrap: wrap;*/
@@ -36,7 +37,7 @@
 	justify-content: space-between;
 }
 
-.itemsForSell {
+.sellBox {
 	border: 2px solid darkblue;
 	width: 40%;
 	padding-left: 15px;

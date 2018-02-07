@@ -2,11 +2,10 @@
 
 	<div class="shop_container">
 	
-		<div class="buyBox">
+		<div class="buyBox"> BUY
 
 			    <% @shops.each do |shop| %>
 					<!-- <div class="gridItemsForBuy"> -->
-
 						<div class="imgNDetail">
 						    <img src="<%= shop.img_url %>" class="itemsBuyImg" style="width: 20%"> 
 						    <div class="nameAndPrice">
@@ -20,34 +19,41 @@
 						    		<img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/ultra-glossy-silver-buttons-icons-arrows/009917-ultra-glossy-silver-button-icon-arrows-triangle-solid-left.png" style="width: 13%"><span class="itemBuyQuantity">0</span><img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/ultra-glossy-silver-buttons-icons-arrows/009917-ultra-glossy-silver-button-icon-arrows-triangle-solid-left.png" style="width: 13%">
 						    		<span class="dorllarSign">$</span><span class="itemBuyPrice"><%= shop.price %></span>
 						    	</p>
-						    </button>
-						   
-					    </div>
-					
+						    </button>				   
+					    </div>					
 					<!-- </div> -->
-			  	<% end %>
-		  	
+			  	<% end %>	  	
 		 </div> 	
+		 <form action="#" method="post" class="sellBox" id="sellBoxForm">
+	  	
+	  	<div class="sellBox"> SELL
 
-	  	<div class="itemsForSell">
 	
-			    <% @pokemons. each do |pokemon| %>
+			    <% @pokemons.each do |pokemon| %>
 				    
 				    	<label class="sellCheckbox">
 				    		<img src="<%= pokemon.species.img_url %>" style="width: 40%" class="itemsSellImg"> 
 				    		<p><%= pokemon.nickname %>  |</p>
 						    <p>Level: <%= pokemon.level %>  |</p>
 						    <p><span class="">$20</span>   |</p>
-				    		<p><input type="checkbox" checked="checked"></p>							    
+				    		<p><input type="checkbox" name="<%= pokemon.nickname %>" value="20" checked="checked"></p>			    
 					    </label>
 					
 			    <% end %>
-			    
-			    <button>Add Pokemons in the shop</button>
+			    <button>sell</button>
 
-	  	</div>
+		<p>
+	        <label>$<input type="text" name="total" class="num" size="6" value="0" readonly="readonly" /></label>
+	    </p>
+ <div id="toppings">Toppings: 
+        <label><input type="checkbox" name="mushrooms" value=".40" /> mushrooms</label>
+    </div>
+    
+    <p>
+        <label>Total: $ <input type="text" name="total" class="num" size="6" value="8.00" readonly="readonly" /></label>
+    </p>
 
-  	
+	  	</div>  	
 </div>
 
 <script>
@@ -60,5 +66,5 @@
     			itemBuyPrice.textContent = Number(itemBuyQuantity.textContent) * 10;
      }); 
      	 
-// <button>+<span class="itemSellQuatity">0</span></button>
+
 </script>
