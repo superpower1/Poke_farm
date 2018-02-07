@@ -1,0 +1,28 @@
+
+<div class="habitats">
+  <% @habitats.each do |habitat| %>
+    <div class="habitat">
+      <a href="#teams" data-toggle="modal"><%= habitat.identifier %></a>
+    </div>
+  <% end %>
+</div>
+
+<div class="mission">
+
+</div>
+
+<div class="modal fade" id="teams" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p>Teams</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.habitat').on('click', e=>{
+
+  })
+</script>
