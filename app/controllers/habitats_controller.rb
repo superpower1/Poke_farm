@@ -32,4 +32,11 @@ class HabitatsController < ApplicationController
 		render :json => @the_chosen_one
 		# render :json => @effect
 	end
+
+	def start_catch_pokemon_api
+		@team = Team.find_by(id:params[:team_id])
+		@team.start_time = Time.now.utc
+		@team.save
+		render :json => @team
+	end
 end

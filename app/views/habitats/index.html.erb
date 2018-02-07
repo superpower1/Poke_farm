@@ -14,15 +14,17 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <p>Teams</p>
         <div class="teams"></div>
       </div>
     </div>
   </div>
 </div>
 
+
+
 <script type="text/javascript">
   $('.habitat').on('click', e=>{
+    $('.teams').html("");
     console.log(e.target.value)
 
     var url = '/api/teams/get_user_team_api?name=<%= session[:user_id] %>'
@@ -34,10 +36,40 @@
       console.log(teams);
       for (var num in teams){
         // console.log(teams[num]);
-        console.log(num);
+        // console.log(num);
         var teamContainer = $('<tr>')
         var teamName = $('<td>')
         teamName.text(num)
+        teamName.val(num)
+        teamContainer.click(function(event){
+          
+          console.log(event.target.value);
+          // api/habitats/start_catch_pokemon_api
+          url = '/api/habitats/start_catch_pokemon_api';
+          data = {
+            team_id:event.target.value
+          };
+          fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+              "Content-Type": "application/json"
+            },
+            credentials: "same-origin"
+          }).then(function(response) {
+            return response.json();
+          })
+          .then(function(team){
+            console.log("success")
+            console.log(team.id + "is on the trip" )
+
+
+          })
+          .catch(function(error) {
+            error.message //=> String
+          })
+
+        })
         teamContainer.append(teamName)
         $('.teams').append(teamContainer)
       } 
@@ -47,4 +79,17 @@
 
     $('.teamSelectContainer')
   })
+
+  var url = '/api/teams/get_user_team_api?name=<%= session[:user_id] %>'
+
+  fetch(url)
+  .then(function(response) {
+    return response.json();
+  }).then(function(teams) {
+    console.log(teams);
+    
+  }).catch(function(e) {
+    console.log("Oops, error");
+  });
+
 </script>
