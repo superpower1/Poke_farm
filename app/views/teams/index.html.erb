@@ -20,18 +20,38 @@
         <% end %>
       <% end %>
       <td><%= team.start_time %></td>
-      <td><button class="add-team-pokemon">Add</button></td>
+      <td>
+        <a href="#my-pokemon" data-toggle="modal">
+          <button class="add-team-pokemon" id="<%= team.id %>">Add</button>
+        </a>
+      </td>
     </tr>
   <% end %>
 </table>
 <div>
 	<form action="/teams" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="text" name="name" placeholder="New team name">
 		<button>add new team</button>
 	</form>
 </div>
 
-<div class="searchResult"></div>
+<div class="modal fade" id="my-pokemon" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p>My pokemon list</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.add-team-pokemon').on('click', e=>{
+    console.log(e.target.id);
+
+  })
+</script>
 
 <script type="text/javascript">
 var teamList = document.querySelector('.teamList');
