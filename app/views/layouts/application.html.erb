@@ -16,9 +16,7 @@
   </head>
 
   <body>
-    <% if session[:user_id] %>
-    <%= session[:user_id] %>
-    <% end %>
+    <%= render 'layouts/navigation' %>
     <%= yield %>
   </body>
 </html>
