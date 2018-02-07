@@ -1,9 +1,26 @@
 <h1>Home</h1>
+<% if !session[:user_id] %>
 <form class="" action="/sessions" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="">Email</label>
   <input type="text" name="email" >
   <label for="">Password</label>
-  <input type="text" name="password" >
+  <input type="password" name="password" >
   <button class="btn btn-primary">Log In</button>
 </form>
+<% end %>
+<h1>How to play</h1>
+<div class="">
+ <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu augue,
+    tristique in vehicula id, rutrum quis tellus. Curabitur et tortor quis nibh ultrices
+    molestie. Aenean aliquam eget purus non volutpat. Maecenas dignissim mauris a aliquet
+    scelerisque. Quisque quis iaculis odio, vitae pharetra eros. Maecenas vel nisi lorem.
+    Morbi nec interdum mi. Suspendisse vestibulum velit non ultrices faucibus. Vivamus eu
+    arcu sed orci maximus congue. Donec lobortis diam elit, maximus tincidunt justo feugiat
+    quis. Pellentesque orci massa, gravida id lacus sed, maximus porta arcu. Sed commodo
+    massa in ante volutpat, ut malesuada lectus interdum. Proin lectus ligula, pharetra ac
+    dictum sodales, rhoncus vitae diam. Praesent nisl urna, pretium a mi at, posuere
+    viverra ex.
+  </p>
+</div>

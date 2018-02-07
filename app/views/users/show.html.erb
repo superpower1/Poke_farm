@@ -2,8 +2,3 @@
 session:<%= session[:user_id]%><br>
 <%= @user.name%>
 <%= @user.id%>
-<form action="/sessions" method="post">
-  <input type="hidden" name="_method" value="delete">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <button>Log out</button>
-</form>
