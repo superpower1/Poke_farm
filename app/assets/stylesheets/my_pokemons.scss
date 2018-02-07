@@ -23,4 +23,13 @@
 	width: 600px;
 	height: 400px;
 	background-size: cover;
+	border-radius: 20px;
+	border: 10px solid white;
+	position: relative;
+	display: grid;
+	grid-template-columns: repeat(5, 100px);
+  grid-template-rows: repeat(5,100px);
+
+	.pokemon{
+	}
 }
