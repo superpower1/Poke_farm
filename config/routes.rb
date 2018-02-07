@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create'
   delete '/sessions', to: 'sessions#destroy'
   root 'pages#home'
+
   get 'api/teams/get_user_team_api', to: 'teams#get_user_team_api'
-  get 'api/habitats/get_catched_pokemon_api', to: 'habitats#get_catched_pokemon_api'
+  post 'api/habitats/catch_pokemon_api', to: 'habitats#get_catched_pokemon_api'
 end

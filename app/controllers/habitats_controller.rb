@@ -5,7 +5,6 @@ class HabitatsController < ApplicationController
   end
 
   def get_catched_pokemon_api
-
   	# pokemon in the team can improve capture_rate
   	@team = Team.find_by(id:params[:team_id]).pokemons
 
