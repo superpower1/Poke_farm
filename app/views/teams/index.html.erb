@@ -1,0 +1,199 @@
+<table class="teamList">
+  <tr>
+    <th>name</th>
+    <th>pokemon 1</th>
+    <th>pokemon 2</th>
+    <th>pokemon 3</th>
+    <th>pokemon 4</th>
+    <th>pokemon 5</th>
+    <th>save</th>
+    <th>start</th>
+  </tr>
+  <% @teams.each do |team| %>
+  <tr class="singleTeam">
+    <td>
+    <% if team.name == nil || team.name == 0 %>
+    	<input class="teamName" type="text" value="No. <%= team.id %> Team">
+
+    <% else %>
+    	<input class="teamName" type="text" value="<%=team.name%>">
+    <% end %>
+    </td>
+    <td>
+    <% if team.member_1 == nil || team.member_1 == 0 %>
+			<input class="member1" type="text" value='+'>
+    <% else %>
+			<input class="member1" type="text" value="<%= team.member_1 %>">
+    <% end %>	
+    </td>
+
+    <td>
+    <% if team.member_2 == nil || team.member_2 == 0 %>
+			<input class="member2" type="text" value='+'>
+    <% else %>
+			<input class="member2" type="text" value="<%= team.member_2 %>">
+    <% end %>	
+    </td>
+
+    <td>
+    <% if team.member_3 == nil || team.member_3 == 0 %>
+			<input class="member3" type="text" value='+'>
+    <% else %>
+			<input class="member3" type="text" value="<%= team.member_3 %>">
+    <% end %>	
+    </td>
+
+    <td>
+    <% if team.member_4 == nil || team.member_4 == 0 %>
+			<input class="member4" type="text" value='+'>
+    <% else %>
+			<input class="member4" type="text" value="<%= team.member_4 %>">
+    <% end %>	
+    </td>
+
+    <td>
+    <% if team.member_5 == nil || team.member_5 == 0 %>
+			<input class="member5" type="text" value='+'>
+    <% else %>
+			<input class="member5" type="text" value="<%= team.member_5 %>">
+    <% end %>	
+    </td>
+    <td><button class="saveTeam" value=<%= team.id %>>save</button></td>
+    <td><%= team.start_time %></td>
+  </tr>
+  <% end %>
+</table>
+<div>
+	<form action="/teams/" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<button>add new team</button>
+	</form>
+</div>
+
+<div class="searchResult"></div>
+
+<script type="text/javascript">
+var teamList = document.querySelector('.teamList');
+
+// my_pokemons search
+answerContainer = document.querySelector('.searchResult');
+
+teamList.addEventListener("click",function(){
+	// console.log("work")
+
+	//save change function
+	if(event.target.className == "saveTeam"){
+		console.log(event.target.value)
+		var teamName = event.target.closest('.singleTeam').querySelector('.teamName').value;
+		var team1 = event.target.closest('.singleTeam').querySelector('.member1').value;
+		var team2 = event.target.closest('.singleTeam').querySelector('.member2').value;
+		var team3 = event.target.closest('.singleTeam').querySelector('.member3').value;
+		var team4 = event.target.closest('.singleTeam').querySelector('.member4').value;
+		var team5 = event.target.closest('.singleTeam').querySelector('.member5').value;
+		console.log(teamName)
+		console.log(team1)
+
+		var url = './'+event.target.value;
+
+		var data = {
+			name:teamName,
+			member_1:team1,
+			member_2:team2,
+			member_3:team3,
+			member_4:team4,
+			member_5:team5,
+		};
+
+		fetch(url, {
+		  method: 'PUT',
+		  body: JSON.stringify(data), 
+		  headers: new Headers({
+		    'Content-Type': 'application/json',
+      	'Accept': 'application/json',
+		    'X-Requested-With': 'XMLHttpRequest',
+		    'X-CSRF-Token': AUTH_TOKEN
+		  })
+		}).then(res => res.json())
+		.catch(error => console.error('Error:', error))
+		.then(response => {
+			console.log('Success:', response);
+		});
+	}
+
+	
+})
+
+//search pokemon in my_pokemon table
+teamList.addEventListener("keyup",function(event){
+	console.log(event.target)
+	if(
+		event.target.className == "member1" ||
+		event.target.className == "member2" ||
+			event.target.className == "member3" ||
+			event.target.className == "member4" ||
+			event.target.className == "member5"
+	){
+		console.log(event.target.className)
+
+		var url = "/my_pokemons/?api=true"
+		console.log(url)
+		fetch(url, {
+		  method: 'GET',
+		  credentials:"same-origin",
+		  headers: new Headers({
+		    'Content-Type': 'application/json',
+      	'Accept': 'application/json',
+		    'X-Requested-With': 'XMLHttpRequest',
+		    'X-CSRF-Token': AUTH_TOKEN,
+		  })
+		}).then(res => res.json())
+		.catch(error => console.error('Error:', error))
+		.then(response => {
+			console.log('Success:', response);
+
+			answerContainer.innerHTML = '';
+			response.forEach(function(pokemon){
+				var newP = document.createElement("p");
+				var newDiv = document.createElement("div");
+				
+				newDiv.addEventListener("click",function(anotherEvent){
+					event.target.value = anotherEvent.target.innerHTML;
+				})
+				newP.innerHTML = pokemon.nickname;
+				newDiv.appendChild(newP);
+				answerContainer.appendChild(newDiv);
+			})
+		});
+	}
+})
+
+// box.addEventListener("keyup",function(){
+// 	console.log("work")
+// 	var inputContent = box.value;
+// 	fetch('/species/show?fuzzy_search=true&identifier='+ inputContent)
+// 	.then(function(response) {
+// 		return response.text();
+// 	})
+// 	.then(function(data) {
+// 		var seatchResult = JSON.parse(data);
+// 		console.log(seatchResult);
+// 		answerContainer.innerHTML = '';
+		
+// 		seatchResult.forEach(function(pokemon){
+
+// 			var newLi = document.createElement('li');
+
+// 			newLi.innerHTML = pokemon.identifier;
+
+// 			newLi.addEventListener('click',function(event){
+// 				box.value = event.target.innerHTML;
+// 			})
+
+// 			answerContainer.appendChild(newLi);
+
+// 		})
+// 	})
+// })
+
+
+</script>
