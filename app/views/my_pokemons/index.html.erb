@@ -1,4 +1,4 @@
-<div class="background"></div>
+
 <h1>Pokemon Collection</h1>
 <a href="/my_pokemons/new"><button>Catch New Pokemon</button></a>
 <a href="/species"><button>Pokedex</button></a>
@@ -45,7 +45,7 @@
 	document.querySelector('.showList').addEventListener('click',function(event){
 		if(event.target.className === "evolute"){
 			console.log(event.target.id)
-			var url = './'+event.target.id;
+			var url = '/my_pokemons/'+event.target.id;
 			var data = {
 
 			};

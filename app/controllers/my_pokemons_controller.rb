@@ -76,7 +76,7 @@ class MyPokemonsController < ApplicationController
 			new_pokemon.growth_rate = pokemon.growth_rate
 			new_pokemon.save
 
-			redirect_to "/my_pokemons/#{session[:user_id]}"
+			redirect_to "/my_pokemons"
 		else
 			redirect_to '/'
 		end

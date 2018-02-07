@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206020212) do
+ActiveRecord::Schema.define(version: 20180207115836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,10 @@ ActiveRecord::Schema.define(version: 20180206020212) do
     t.datetime "updated_at", null: false
     t.boolean "ready_for_evolution"
     t.integer "user_id"
+    t.bigint "team_id"
+    t.integer "team_order"
     t.index ["species_id"], name: "index_my_pokemons_on_species_id"
+    t.index ["team_id"], name: "index_my_pokemons_on_team_id"
   end
 
   create_table "shops", force: :cascade do |t|
@@ -79,12 +82,6 @@ ActiveRecord::Schema.define(version: 20180206020212) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.integer "member_1"
-    t.integer "member_2"
-    t.integer "member_3"
-    t.integer "member_4"
-    t.integer "member_5"
-    t.integer "member_6"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "start_time"
