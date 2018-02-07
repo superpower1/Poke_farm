@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <a class="navbar-brand" href="/">Home</a>
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+ </button>
+
+ <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto">
+   <% if !session[:user_id]%>
+    <li class="nav-item active">
+     <a class="nav-link" href="/users/new">Sign Up<span class="sr-only">(current)</span></a>
+    </li>
+   <% else %>
+    <li class="nav-item">
+     <a class="nav-link" href="/my_pokemons">My Farm</a>
+    </li>
+    <li class="nav-item">
+     <a class="nav-link" href="/shops">Shop</a>
+    </li>
+    <li class="nav-item">
+     <a class="nav-link" href="/species">Pokemon list</a>
+    </li>
+    <li class="nav-item">
+     <a class="nav-link" href="/teams">My Team</a>
+    </li>
+   <% end %>
+  </ul>
+   <% if session[:user_id]%>
+    <h5>Hello! <%= User.find(session[:user_id]).name%></h5>
+    <form class="" action="/sessions" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="_method" value="delete">
+      <button class="btn btn-primary">Log Out</button>
+    </form>
+   <% end %>
+    <form class="form-inline my-2 my-lg-0"  action="/species" method="post">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="name">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+ </div>
+</nav>

@@ -1,3 +1,34 @@
 // Place all the styles related to the habitats controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.habitats {
+  background-image: url("catch_page/habitat_map.jpg");
+  width: 1000px;
+	height: 500px;
+	background-size: cover;
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.habitat{
+	background-color: rgba(255,255,255,0.3);
+	border: 3px solid white;
+	font-size: 3em;
+	text-align: center;
+	a{
+		display: block;
+		margin: 0 auto;
+		color:white;
+		width: 100%;
+		height: 100%;
+		
+		button{
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0,0,0,0);
+			border:none;
+		}		
+	}
+}

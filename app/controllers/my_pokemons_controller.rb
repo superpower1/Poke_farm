@@ -1,53 +1,16 @@
 class MyPokemonsController < ApplicationController
 	skip_before_action :verify_authenticity_token
+
 	def index
-		@pokemons = MyPokemon.all
-
-		@pokemons.each{|pokemon|
-
-			exp_standard = Experience.where(growth_rate:pokemon.growth_rate)
-
-			#check each pokmon's time difference between current time and update time
-			time_difference = Time.now.utc - pokemon.updated_at
-
-			#add exp base on time pass
-			pokemon.exp = pokemon.exp + time_difference*10000 #1 min get 1 exp
-
-			#if exp > upgrate request exp, upgrate to next level
-			while pokemon.level < 100 && pokemon.exp > exp_standard.find_by(level:pokemon.level).experience.to_i
-				pokemon.exp = pokemon.exp - exp_standard.find_by(level:pokemon.level).experience.to_i
-				pokemon.level += 1
-				pokemon.ready_for_evolution = false
-
-				# if pokemon can evolute, ture the ready_for_evolution on
-				evolute_species = Species.find_by(evolves_from_species_id: pokemon.species_id)
-				if evolute_species != nil
-					if evolute_species.evolution_min_level == nil || pokemon.level > evolute_species.evolution_min_level
-						pokemon.ready_for_evolution = true
-					end
-				end
-			end
-
-			# case of pokemon level wore than 100
-			if pokemon.level >= 100
-				pokemon.level = 100
-				pokemon.exp = 0
-			end
-
-			# update exp, level & update_at to current time
-			updatePokemon = MyPokemon.find_by(id:pokemon.id)
-			updatePokemon.exp = pokemon.exp
-			updatePokemon.level = pokemon.level
-			updatePokemon.ready_for_evolution = pokemon.ready_for_evolution
-			updatePokemon.save
-		}
-	end
-
-	def show
 		@pokemons = MyPokemon.where(user_id:session[:user_id])
 		# @pokemons = MyPokemon.all
 
-		@pokemons.each{|pokemon|
+		if(params[:api] == "true")
+			render :json => @pokemons
+			# return
+		end
+
+		@pokemons.each do |pokemon|
 
 			exp_standard = Experience.where(growth_rate:pokemon.growth_rate)
 
@@ -84,7 +47,15 @@ class MyPokemonsController < ApplicationController
 			updatePokemon.level = pokemon.level
 			updatePokemon.ready_for_evolution = pokemon.ready_for_evolution
 			updatePokemon.save
-		}
+		end
+	end
+
+	def index_api
+		
+	end
+
+	def show
+		
 	end
 
 	def new
@@ -105,7 +76,7 @@ class MyPokemonsController < ApplicationController
 			new_pokemon.growth_rate = pokemon.growth_rate
 			new_pokemon.save
 
-			redirect_to "/my_pokemons/#{session[:user_id]}"
+			redirect_to "/my_pokemons"
 		else
 			redirect_to '/'
 		end

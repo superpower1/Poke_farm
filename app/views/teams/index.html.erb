@@ -1,0 +1,189 @@
+<table class="teamList">
+  <tr>
+    <th>name</th>
+    <th>pokemon 1</th>
+    <th>pokemon 2</th>
+    <th>pokemon 3</th>
+    <th>pokemon 4</th>
+    <th>pokemon 5</th>
+    <th>start</th>
+    <th>add</th>
+  </tr>
+  <% @teams.each do |team| %>
+    <tr>
+      <td><%= team.name %></td>
+      <% 5.times do |index| %>
+        <% if team.pokemons[index] %>
+          <td><%= team.pokemons[index].species.identifier %>(<%= team.pokemons[index].nickname %>)</td>
+        <% else %>
+          <td>Empty</td>
+        <% end %>
+      <% end %>
+      <td><%= team.start_time %></td>
+      <td>
+        <a href="#my-pokemon" data-toggle="modal">
+          <button class="add-team-pokemon" id="<%= team.id %>">Add</button>
+        </a>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<div>
+	<form action="/teams" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="text" name="name" placeholder="New team name">
+		<button>add new team</button>
+	</form>
+</div>
+
+<div class="modal fade" id="my-pokemon" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <form class="update-team" action="" method="post">
+          <h4>My pokemon list</h4>
+          <input type="hidden" name="_method" value="put">
+          <select name="my_pokemon_id">
+          <% @my_pokemons.each do |pokemon| %>
+            <option value="<%= pokemon.id %>"><%= pokemon.species.identifier %>(<%= pokemon.nickname %>)</option>
+          <% end %>
+          </select>
+          <button type="submit" name="button">Add</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('.add-team-pokemon').on('click', e=>{
+    const teamId = e.target.id;
+    $('.update-team').attr('action', `/teams/${teamId}`);
+  })
+</script>
+
+<script type="text/javascript">
+var teamList = document.querySelector('.teamList');
+
+// my_pokemons search
+answerContainer = document.querySelector('.searchResult');
+
+teamList.addEventListener("click",function(){
+	// console.log("work")
+
+	//save change function
+	if(event.target.className == "saveTeam"){
+		console.log(event.target.value)
+		var teamName = event.target.closest('.singleTeam').querySelector('.teamName').value;
+		var team1 = event.target.closest('.singleTeam').querySelector('.member1').value;
+		var team2 = event.target.closest('.singleTeam').querySelector('.member2').value;
+		var team3 = event.target.closest('.singleTeam').querySelector('.member3').value;
+		var team4 = event.target.closest('.singleTeam').querySelector('.member4').value;
+		var team5 = event.target.closest('.singleTeam').querySelector('.member5').value;
+		console.log(teamName)
+		console.log(team1)
+
+		var url = './teams/'+event.target.value;
+
+		var data = {
+			name:teamName,
+			member_1:team1,
+			member_2:team2,
+			member_3:team3,
+			member_4:team4,
+			member_5:team5,
+		};
+
+		fetch(url, {
+		  method: 'PUT',
+		  body: JSON.stringify(data),
+		  headers: new Headers({
+		    'Content-Type': 'application/json',
+      	'Accept': 'application/json',
+		    'X-Requested-With': 'XMLHttpRequest',
+		    'X-CSRF-Token': AUTH_TOKEN
+		  })
+		}).then(res => res.json())
+		.catch(error => console.error('Error:', error))
+		.then(response => {
+			console.log('Success:', response);
+		});
+	}
+
+
+})
+
+//search pokemon in my_pokemon table
+teamList.addEventListener("keyup",function(event){
+	console.log(event.target)
+	if(
+		event.target.className == "member1" ||
+		event.target.className == "member2" ||
+			event.target.className == "member3" ||
+			event.target.className == "member4" ||
+			event.target.className == "member5"
+	){
+		console.log(event.target.className)
+
+		var url = "/my_pokemons/?api=true"
+		console.log(url)
+		fetch(url, {
+		  method: 'GET',
+		  credentials:"same-origin",
+		  headers: new Headers({
+		    'Content-Type': 'application/json',
+      	'Accept': 'application/json',
+		    'X-Requested-With': 'XMLHttpRequest',
+		    'X-CSRF-Token': AUTH_TOKEN,
+		  })
+		}).then(res => res.json())
+		.catch(error => console.error('Error:', error))
+		.then(response => {
+			console.log('Success:', response);
+
+			answerContainer.innerHTML = '';
+			response.forEach(function(pokemon){
+				var newP = document.createElement("p");
+				var newDiv = document.createElement("div");
+
+				newDiv.addEventListener("click",function(anotherEvent){
+					event.target.value = anotherEvent.target.innerHTML;
+				})
+				newP.innerHTML = pokemon.nickname;
+				newDiv.appendChild(newP);
+				answerContainer.appendChild(newDiv);
+			})
+		});
+	}
+})
+
+// box.addEventListener("keyup",function(){
+// 	console.log("work")
+// 	var inputContent = box.value;
+// 	fetch('/species/show?fuzzy_search=true&identifier='+ inputContent)
+// 	.then(function(response) {
+// 		return response.text();
+// 	})
+// 	.then(function(data) {
+// 		var seatchResult = JSON.parse(data);
+// 		console.log(seatchResult);
+// 		answerContainer.innerHTML = '';
+
+// 		seatchResult.forEach(function(pokemon){
+
+// 			var newLi = document.createElement('li');
+
+// 			newLi.innerHTML = pokemon.identifier;
+
+// 			newLi.addEventListener('click',function(event){
+// 				box.value = event.target.innerHTML;
+// 			})
+
+// 			answerContainer.appendChild(newLi);
+
+// 		})
+// 	})
+// })
+
+
+</script>
