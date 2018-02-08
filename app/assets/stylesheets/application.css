@@ -17,3 +17,8 @@
  .container {
    margin-top: 56px;
  }
+
+ .doctor{
+ 	float: right;
+ 	width: 10%;
+ }
