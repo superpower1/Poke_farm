@@ -18,7 +18,7 @@ class MyPokemonsController < ApplicationController
 			time_difference = Time.now.utc - pokemon.updated_at
 
 			#add exp base on time pass
-			pokemon.exp = pokemon.exp + time_difference*10000 #1 min get 1 exp
+			pokemon.exp = pokemon.exp + time_difference #1 min get 1 exp
 
 			#if exp > upgrate request exp, upgrate to next level
 			while pokemon.level < 100 && pokemon.exp > exp_standard.find_by(level:pokemon.level).experience.to_i
