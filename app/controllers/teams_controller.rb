@@ -26,9 +26,11 @@ class TeamsController < ApplicationController
 		@team_data = {}
 		teams.each do |team|
 			tmpData = {
+				id: team.id,
 				name: team.name, 
 				start_time: team.start_time,
-				pokemons: []
+				pokemons: [],
+				destination: team.destination
 			}
 			team.pokemons.each do |pokemon|
 				tmpData[:pokemons].push(pokemon)
@@ -37,7 +39,6 @@ class TeamsController < ApplicationController
 			# @team_data['name'] = team.name
 			# @team_data['start_time'] = team.start_time
 		end
-
 
 		# render :json => @team_data
 		render :json => @team_data

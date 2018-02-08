@@ -2,8 +2,8 @@ class ShopsController < ApplicationController
 
 	def index
 		@shops = Shop.all
-		@pokemons = MyPokemon.where(user_id: session[:user_id])
-		@user = User.find(session[:user_id])
+		@pokemons = MyPokemon.where(user_id: session[:user_id])	# change this to session  [:user_id]
+		@user = User.find(session[:user_id])   # change this to session  [:user_id]
 		@mypokemon = MyPokemon.all
 
 
@@ -30,6 +30,8 @@ class ShopsController < ApplicationController
 		@user.money = @mymoney
 		@user.save
 
+
+		@mypokemon = MyPokemon.new
 
 		redirect_to '/shops'
 	end
