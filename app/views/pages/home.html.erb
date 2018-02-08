@@ -1,4 +1,3 @@
-<h1>Home</h1>
 <% if !session[:user_id] %>
 <form class="" action="/sessions" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
@@ -9,18 +8,25 @@
   <button class="btn btn-primary">Log In</button>
 </form>
 <% end %>
-<h1>How to play</h1>
-<div class="">
- <p>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris arcu augue,
-    tristique in vehicula id, rutrum quis tellus. Curabitur et tortor quis nibh ultrices
-    molestie. Aenean aliquam eget purus non volutpat. Maecenas dignissim mauris a aliquet
-    scelerisque. Quisque quis iaculis odio, vitae pharetra eros. Maecenas vel nisi lorem.
-    Morbi nec interdum mi. Suspendisse vestibulum velit non ultrices faucibus. Vivamus eu
-    arcu sed orci maximus congue. Donec lobortis diam elit, maximus tincidunt justo feugiat
-    quis. Pellentesque orci massa, gravida id lacus sed, maximus porta arcu. Sed commodo
-    massa in ante volutpat, ut malesuada lectus interdum. Proin lectus ligula, pharetra ac
-    dictum sodales, rhoncus vitae diam. Praesent nisl urna, pretium a mi at, posuere
-    viverra ex.
-  </p>
+<h1>Pokemon farm</h1>
+
+<h3>Game background</h3>
+<p>Dr.Okido own a Pokemon farm.</p>
+<p>However, he is very busy to do his research, so he cannot take care of his farm.</p>
+<p>Pokemons in the farm are not very happy, Dr.Okido feel very sad, so he give his farm to his friend, the new game player.</p>
+<p>Game player need to take care of the farm, feed Pokemon, catch and train new Pokemon and provide well trained Pokemons to other pokemon trainer to earn money.</p>
+
+<h3>How to play</h3>
+<h4>1. User can feed and train Pokemons in the farm</h4>
+<p>the level of Pokemons can be increased with the time.</p>
+
+<h4>2.training Pokemons</h4>
+<p>User can trade well trained Pokemons (>40 level) to the market and let other pokemon trainer to adopt and earn money from them，User alse can buy different kinds of Poké Ball or rare Pokemons in the market.</p>
+
+<h4>3. User can has a short field trip (about 2 hours) to catch new Pokemon in grasslands / hilly area / sea. </h4>
+<p>If user do not have any Pokemon can Fly, he cannot access to hilly area.</p>
+<p>If user do not have any Pokemon can swim, he cannot access to sea.
+In user's bag, there are 6 places for Poké Ball, so user's maximum Pokemons' carry number is 6. Take powerful Pokemons to do this field trip can increase user's posibility to catch rare Pokemon, but the more Pokemons he take, the less Pokemon he can catch in the trip.</p>
+
+4. Every user can set 3 Pokemon's to protact his farm. User can choose to join Team Rocket. If he is a mumber of Team Rocket, he can visit other user's farm and steal Pokemon. The stolen Pokemon cannot sell to the market before it upgrate 10 levels. The owner of this Pokemon can take Pokemons to revenge (fight), if revenge succeeded, owner can get Pokemon back and get more money from user. However, if user successfully raised this Pokemon to a high level, he can sell it to market and get money.</p>
 </div>
