@@ -1,36 +1,38 @@
-<h1>Species</h1>
-<div class="search">
-		<input class="input" type="text" name="identifier" placeholder="Input a pokemon name">
-		<button>enter</button>
+<div class="small-container">
+	<h1>Pokemons</h1>
+	<div class="search">
+			<input class="input form" type="text" name="identifier" placeholder="Input a pokemon name">
+			<button class="btn btn-primary">Search</button>
+	</div>
+
+	<div id="result-box">
+
+	</div>
+
+	<table>
+			<tr>
+		    <th>name</th>
+		    <th>height</th>
+		    <th>weight</th>
+		    <th>color</th>
+		    <th>shape</th>
+		    <th>habitat</th>
+		    <th>image</th>
+		  </tr>
+		<% @species.each do |species| %>
+			<tr>
+				<td><%= species.identifier %></td>
+				<td><%= species.height/10.0 %></td>
+				<td><%= species.weight/10.0 %></td>
+				<td><%= species.color %></td>
+				<td><%= species.shape %></td>
+				<td><%= species.habitats.first.identifier %></td>
+				<td><img src=<%= species.img_url %>></td>
+			</tr>
+		<% end %>
+	</table>
+	<%= will_paginate @species %>
 </div>
-
-<div id="result-box">
-
-</div>
-
-<table>
-		<tr>
-	    <th>name</th>
-	    <th>height</th>
-	    <th>weight</th>
-	    <th>color</th>
-	    <th>shape</th>
-	    <th>habitat</th>
-	    <th>image</th>
-	  </tr>
-	<% @species.each do |species| %>
-		<tr>
-			<td><%= species.identifier %></td>
-			<td><%= species.height/10.0 %></td>
-			<td><%= species.weight/10.0 %></td>
-			<td><%= species.color %></td>
-			<td><%= species.shape %></td>
-			<td><%= species.habitats.first.identifier %></td>
-			<td><img src=<%= species.img_url %>></td>
-		</tr>
-	<% end %>
-</table>
-<%= will_paginate @species %>
 
 <script
   src="http://code.jquery.com/jquery-3.3.1.js"
