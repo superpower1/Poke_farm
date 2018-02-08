@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .habitats {
-  background-image: url("catch_page/habitat_map.jpg");
+  background-image: url("/catch_page/habitat_map.jpg");
   width: 1000px;
 	height: 500px;
 	background-size: cover;
@@ -23,12 +23,12 @@
 		color:white;
 		width: 100%;
 		height: 100%;
-		
+
 		button{
 			width: 100%;
 			height: 100%;
 			background-color: rgba(0,0,0,0);
 			border:none;
-		}		
+		}
 	}
 }
