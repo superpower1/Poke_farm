@@ -19,7 +19,6 @@ class UsersController < ApplicationController
     # shop.price = 100
     # shop.img_url = Species.find(num).img_url
     # shop.save
-    end
 
     if user.save
       session[:user_id] = user.id
