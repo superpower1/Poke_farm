@@ -15,7 +15,7 @@
 	    <th>weight</th>
 	    <th>color</th>
 	    <th>shape</th>
-	    <!-- <th>habitat</th> -->
+	    <th>habitat</th>
 	    <th>image</th>
 	  </tr>
 	<% @species.each do |species| %>
@@ -25,7 +25,7 @@
 			<td><%= species.weight/10.0 %></td>
 			<td><%= species.color %></td>
 			<td><%= species.shape %></td>
-			<!-- <td><%= species.habitats.first.identifier %></td> -->
+			<td><%= species.habitats.first.identifier %></td>
 			<td><img src=<%= species.img_url %>></td>
 		</tr>
 	<% end %>
@@ -48,7 +48,7 @@
 
 		$.ajax(options).done(function(response) {
 			console.log(response.length)
-			var tag = ['name','height','weight','color','shape','image']
+			var tag = ['name','height','weight','color','shape','habitat','image']
 			var $tr = $('<tr>').addClass('pop-tr'); //create a new <tr></tr>
 			for(i=0; i<tag.length; i++){
 			    var content = '<th>' + tag[i]+ '</th>'
@@ -71,6 +71,7 @@
             $tr_1.append(content)
 						content = '<td>' + response[i].shape + '</td>'
             $tr_1.append(content)
+
             $img = $('<img>').attr('src', response[i].img_url)
 						content = $('<td>').append($img)
 			 			$tr_1.append(content)
