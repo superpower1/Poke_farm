@@ -71,7 +71,8 @@
             $tr_1.append(content)
 						content = '<td>' + response[i].shape + '</td>'
             $tr_1.append(content)
-
+						content = '<td>' + response[i].habitat + '</td>'
+            $tr_1.append(content)
             $img = $('<img>').attr('src', response[i].img_url)
 						content = $('<td>').append($img)
 			 			$tr_1.append(content)
