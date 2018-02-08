@@ -8,29 +8,40 @@
 
 
 require 'csv'
+Shop.delete_all
 
-csv = CSV.foreach("raw_data/experiences.csv")
+#
+# csv = CSV.foreach("raw_data/experiences.csv")
+#
+# csv.each do |row|
+# 	Experience.create(growth_rate: row[1], level: row[2], experience: row[3])
+# end
+#
+# csv = CSV.foreach("raw_data/habitats.csv")
+#
+# csv.each do |row|
+# 	Habitat.create(identifier: row[1], rarity: row[2])
+# end
+#
+# csv = CSV.foreach("raw_data/species.csv")
+#
+# csv.each do |row|
+# 	Species.create(identifier: row[1], evolves_from_species_id: row[2],evolution_chain_id: row[3],evolution_min_level: row[4], height:row[5], weight:row[6], color:row[7],shape:row[8],species_habitats_relationship_id:row[9], capture_rate:row[10], growth_rate:row[11],img_url:row[12])
+# end
+#
+# csv = CSV.foreach("raw_data/species_habitats_relationship.csv")
+#
+# csv.each do |row|
+# 	SpeciesHabitatsRelationship.create(species_id: row[1], habitat_id: row[2])
+# end
 
-csv.each do |row|
-	Experience.create(growth_rate: row[1], level: row[2], experience: row[3])
+pokemon_list = [
+  [ "bulbasaur", 100, "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"],
+  [ "charmander", 100, "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"],
+  [ "squirtle", 100, "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"],
+  [ "caterpie", 100, "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png"]
+]
+
+pokemon_list.each do |name, price, img|
+  Shop.create( name: name, price: price, img_url: img )
 end
-
-csv = CSV.foreach("raw_data/habitats.csv")
-
-csv.each do |row|
-	Habitat.create(identifier: row[1], rarity: row[2])
-end
-
-csv = CSV.foreach("raw_data/species.csv")
-
-csv.each do |row|
-	Species.create(identifier: row[1], evolves_from_species_id: row[2],evolution_chain_id: row[3],evolution_min_level: row[4], height:row[5], weight:row[6], color:row[7],shape:row[8],species_habitats_relationship_id:row[9], capture_rate:row[10], growth_rate:row[11],img_url:row[12])
-end
-
-csv = CSV.foreach("raw_data/species_habitats_relationship.csv")
-
-csv.each do |row|
-	SpeciesHabitatsRelationship.create(species_id: row[1], habitat_id: row[2])
-end
-
-

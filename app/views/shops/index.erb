@@ -1,17 +1,18 @@
 	<h2>Poke Shop</h2>
 
-	<div class="shop_container">	
-		<div class="buyBox"> 
+	<div class="shop_container">
+
+		<div class="buyBox">
 			<h1>BUY</h1>
 			    <% @shops.each do |shop| %>
 					<div class="pokeCard">
 						<div class="imgNDetail">
-						    <img src="<%= shop.img_url %>" class="itemsBuyImg" style="width: 20%"> 
+						    <img src=<%= shop.img_url %> class="itemsBuyImg" style="width: 20%">
 						    <div class="nameAndPrice">
 							    <p class="pokeName"><%= shop.name %></p>
-							    <p><span class="dorllarSign">$</span><span class="itemBuyPrice"><%= shop.price %></span></p>						    
+							    <p><span class="dorllarSign">$</span><span class="itemBuyPrice"><%= shop.price %></span></p>
 						    </div>
-					    </div>				   
+					    </div>
 					   	<div class="btnBox">
 						    <div class="minusBtn">
 						    	<img src="http://cdn.mysitemyway.com/etc-mysitemyway/icons/legacy-previews/icons/ultra-glossy-silver-buttons-icons-arrows/009917-ultra-glossy-silver-button-icon-arrows-triangle-solid-left.png" style="width: 13%">
@@ -21,37 +22,37 @@
 								<img src="https://image.flaticon.com/icons/png/128/51/51793.png" style="width: 20%">
 							</div>
 							<p><span class="dorllarSign">$</span><span class="itemBuyValue">0</span></p>
-						</div>	
+						</div>
 					</div>
-			  	<% end %>	
-			  	
-			 <form action="/shops" method="post">	
+			  	<% end %>
+
+			 <form action="/shops" method="post">
 				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-				<input type="hidden" name="actionType" value="buy">					
+				<input type="hidden" name="actionType" value="buy">
 				<label class="totalShow">Total: $<input type="text" id="spnTotalPrice" name="totalPrice" class="num"  value="0" readonly="readonly" /></label>
-			  	<button onclick="">Buy</button>  
-			</form>	
-		</div> 	  	
-	  	
-	  	<div class="sellBox"> 
-	  		<h1>SELL</h1>	  		
+			  	<button onclick="">Buy</button>
+			</form>
+		</div>
+
+	  	<div class="sellBox">
+	  		<h1>SELL</h1>
 			    <% @pokemons.each do |pokemon| %>
 				    <div id="sellCheckBox">
 				    	<label>
-				    		<img src="<%= pokemon.species.img_url %>" style="width: 20%" class="itemsSellImg"> 
+				    		<img src="<%= pokemon.species.img_url %>" style="width: 20%" class="itemsSellImg">
 				    		<p><%= pokemon.nickname %>  |</p>
 						    <p>Level: <%= pokemon.level %>  |</p>
-						    <p><span class="">$20</span>   |</p> 
-				    		<p><input type="checkbox" class="checkoutInput" name="<%= pokemon.nickname %>" value="20" /></p>	
+						    <p><span class="">$20</span>   |</p>
+				    		<p><input type="checkbox" class="checkoutInput" name="<%= pokemon.nickname %>" value="20" /></p>
 					    </label>
-					</div>    					
+					</div>
 			    <% end %>
-			    <form action="/shops" method="post">	
+			    <form action="/shops" method="post">
 					<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 					<input type="hidden" name="actionType" value="sell">
 					<label class="totalShow">Total: $<input type="text" id="txtTotal" class="num" name="totalIncome" size="6" value="0" readonly="readonly" /></label>
 					<button id="btnSell">sell</button>
-				</form>			    
+				</form>
 		</div>
 	  	<p>Money Bag: $<span id="chaChing"><%= @user.money %></span></p>
 	</div>
@@ -79,12 +80,12 @@
 				    var totalPrice = Number( $spnTotalPrice.val());
 				    totalPrice -= itemPrice;
 				    $spnTotalPrice.val( totalPrice );
-		      	}    
+		      	}
 		});
 
 	var $addBtns = $('.addBtn');
     $addBtns.on('click', function() {
-	    var $itemBuyQuantity = $(event.target).closest('.pokeCard').find('.itemBuyQuantity')     
+	    var $itemBuyQuantity = $(event.target).closest('.pokeCard').find('.itemBuyQuantity')
 	    var $itemBuyValue = $(event.target).closest('.pokeCard').find('.itemBuyValue')
 	    var $itemBuyPrice = $(event.target).closest('.pokeCard').find('.itemBuyPrice')
 	    var itemNum = Number($itemBuyQuantity.text()) + 1;
@@ -96,8 +97,8 @@
 	    var  totalPrice = Number( $spnTotalPrice.val());
 	    totalPrice += itemPrice;
 	    $spnTotalPrice.val( totalPrice );
-    }); 
-	
+    });
+
 	var sellCheckBox = document.getElementById("sellCheckBox");
 	var inputs = document.getElementsByClassName("checkoutInput");
 	var totalValue = 0;
@@ -116,5 +117,5 @@
 	 		}
 	 	};
 	});
- 			
+
 </script>
