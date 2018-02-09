@@ -22,7 +22,6 @@ The user of this game are pokemon fan who works in the company. They are fan of 
 
 ## Diagrams
 
-![database](https://github.com/hiby90hou/Poke_farm/database.jpg "Database Schema")
-[logo]: https://github.com/hiby90hou/Poke_farm/raw/chang/database.jpg "Logo Title Text 2"
+[logo]: https://github.com/hiby90hou/Poke_farm/raw/chang/database.jpg "Database Schema"
 
 ### Alert: you can only run db:seed one time after you installed rails server 
