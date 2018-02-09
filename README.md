@@ -23,7 +23,7 @@ Pokemon farm is a online pokemon fan game.
 5. After player send out a team, wait for a while, the team will come back with a possibility of catching a new pokemon from that habitat
 
 ### Pokemon shop
-1. 
+1. Player can trade pokemon to the shop or buy poke ball from shop.
 
 ## Technologies used
 1. HTML, CSS, JAVASCRIPT
@@ -35,12 +35,7 @@ Pokemon farm is a online pokemon fan game.
 
 ## The general approach we took
 ### Pokemon farm
-I create a table called my_pokemons to store all the pokemons which had been catched by user.
-### Pokemon team
-
-
-### Pokemon catch
-
+I create a table called my_pokemons to store all the pokemons which had been catched by user. When user catch new pokemon in the Pokemon catch page, he can see his new pokemon in the farm page, because the data is already been stored in my_pokemons table. Pokemons can get exp when they stay in the farm, because there is a calculate of the gap between pokemon update time and current time, exp calculation is base on this gap.
 
 ### Pokemon shop
 #### for BUY section
