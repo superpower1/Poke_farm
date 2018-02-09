@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     user.ball = 5
     user.money = 1000
 
+
     newpokemons = [
       {
       species_id: 1,
@@ -34,6 +35,8 @@ class UsersController < ApplicationController
       growth_rate: "medium-slow"
       }
     ]
+
+
     if user.save
       session[:user_id] = user.id
       newpokemons.each do |poke|

@@ -1,45 +1,48 @@
+<div class="myPokemonPage">
+	<h1>Pokemon Collection</h1>
 
-<h1>Pokemon Collection</h1>
-<a href="/my_pokemons/new"><button>Catch New Pokemon</button></a>
-<a href="/species"><button>Pokedex</button></a>
-<a href="/species"><button>Pokeshop</button></a>
-<div class="farm">
-	<% @pokemons.each do |pokemon| %>
-	<div class="pokemon">
-		<div><%= pokemon.nickname %></div>
-		<div><%= pokemon.level %></div>
-		<div><img src=<%= pokemon.species.img_url %>></div>
-		<%# if pokemon.ready_for_evolution %>
-		<!-- <button class="evolute" id =<%= pokemon.id %>>Evolute</button> -->
-		<%# end %>
+	<!-- <a href="/species"><button>Pokedex</button></a>
+	<a href="/species"><button>Pokeshop</button></a> -->
+	<div class="farm">
+		<% @pokemons.each do |pokemon| %>
+		<div class="pokemon">
+			<!-- <div><%= pokemon.nickname %></div> -->
+			<!-- <div><%= pokemon.level %></div> -->
+			<div><img src=<%= pokemon.species.img_url %>></div>
+			<%# if pokemon.ready_for_evolution %>
+			<!-- <button class="evolute" id =<%= pokemon.id %>>Evolute</button> -->
+			<%# end %>
+		</div>
+		<% end %>
 	</div>
-	<% end %>
-</div>
-<table class="showList">
-	<tr>
-    <th>nickname</th>
-    <th>sepcies</th> 
-    <th>level</th>
-    <th>exp</th>
-    <th>image</th>
-    <th>ready for evolute</th>
-  </tr>
-	<% @pokemons.each do |pokemon| %>
-	<tr class="show_list">
-		<td class="nickname"><%= pokemon.nickname %></td>
-		<td class="species"><%= pokemon.species.identifier %></td>
-		<td class="level"><%= pokemon.level %></td>
-		<td class="exp"><%= pokemon.exp %></td>
-		<td class="img_url"><img src=<%= pokemon.species.img_url %>></td>
-		<td class="ready_for_evolution">
-			<% if pokemon.ready_for_evolution %>
-			<button class="evolute" id =<%= pokemon.id %>>Evolute</button>
-			<% end %>		
-		</td>
-	</tr>
-	<% end %>
-</table>
 
+	<a href="/my_pokemons/new"><button class="btn">Catch New Pokemon</button></a>
+
+	<table class="showList table">
+		<tr>
+	    <th>nickname</th>
+	    <th>sepcies</th> 
+	    <th>level</th>
+	    <th>exp</th>
+	    <th>image</th>
+	    <th>ready for evolute</th>
+	  </tr>
+		<% @pokemons.each do |pokemon| %>
+		<tr class="show_list ">
+			<td class="nickname"><%= pokemon.nickname %></td>
+			<td class="species"><%= pokemon.species.identifier %></td>
+			<td class="level"><%= pokemon.level %></td>
+			<td class="exp"><%= pokemon.exp %></td>
+			<td class="img_url"><img src=<%= pokemon.species.img_url %>></td>
+			<td class="ready_for_evolution">
+				<% if pokemon.ready_for_evolution %>
+				<button class="evolute" id =<%= pokemon.id %>>Evolute</button>
+				<% end %>		
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div>
 <script type="text/javascript">
 	
 	document.querySelector('.showList').addEventListener('click',function(event){

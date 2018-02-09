@@ -1,4 +1,4 @@
-<table class="teamList">
+<table class="teamList table">
   <tr>
     <th>name</th>
     <th>pokemon 1</th>
@@ -22,17 +22,17 @@
       <td><%= team.start_time %></td>
       <td>
         <a href="#my-pokemon" data-toggle="modal">
-          <button class="add-team-pokemon" id="<%= team.id %>">Add</button>
+          <button class="add-team-pokemon btn btn-success" id="<%= team.id %>">Add</button>
         </a>
       </td>
     </tr>
   <% end %>
 </table>
-<div>
+<div class="text-center">
 	<form action="/teams" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <input type="text" name="name" placeholder="New team name">
-		<button>add new team</button>
+		<button class="btn btn-success">add new team</button>
 	</form>
 </div>
 
