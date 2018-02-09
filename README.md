@@ -23,4 +23,12 @@ The user of this game are pokemon fan who works in the company. They are fan of 
 ## Diagrams
 ![alt text](https://github.com/hiby90hou/Poke_farm/blob/chang/database.jpg "Database Schema")
 
-### Alert: you can only run db:seed one time after you installed rails server 
+## wireframes
+![alt text](https://github.com/hiby90hou/Poke_farm/blob/chang/wireframes.jpg "Wireframes")
+
+
+## Unsolved problems
+
+###1. Alert: you can only run db:seed one time after you installed rails server 
+
+2.the poke ball system is not complete
