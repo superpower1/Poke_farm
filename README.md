@@ -21,7 +21,7 @@ Pokemon farm is a online pokemon fan game.
 The user of this game are pokemon fan who works in the company. They are fan of pokemon, but they are too busy to spend a lot of time to play games. Our game can give them an opportunity to recall childhood without go through a long story line.
 
 ## Diagrams
-
+![alt text][logo]
 [logo]: https://github.com/hiby90hou/Poke_farm/raw/chang/database.jpg "Database Schema"
 
 ### Alert: you can only run db:seed one time after you installed rails server 
