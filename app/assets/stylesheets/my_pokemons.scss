@@ -2,34 +2,46 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.answerContainer{
-	max-height:100px;
-	overflow:auto;
-}
 
-.background{
-	background-image: url('./general/background.jpg');
-	width: 100vw;
-	height: 100vh;
-	position: fixed;
-	z-index: -1;
-	opacity: 0.2;
-	background-size: cover;
-}
+.myPokemonPage{
+	text-align: center;
+	.showList{
+		margin:0 auto;
+	}
+	h1{
+		text-align: center;
+		margin: 0 auto;
+	}
 
-.farm{
-	margin: 0 auto;
-	background-image: url('./farm_page/farm_background.png');
-	width: 600px;
-	height: 400px;
-	background-size: cover;
-	border-radius: 20px;
-	border: 10px solid white;
-	position: relative;
-	display: grid;
-	grid-template-columns: repeat(5, 100px);
-  grid-template-rows: repeat(5,100px);
+	.answerContainer{
+		max-height:100px;
+		overflow:auto;
+	}
+	.background{
+		background-image: url('general/background.jpg');
+		width: 100vw;
+		height: 100vh;
+		position: fixed;
+		z-index: -1;
+		opacity: 0.2;
+		background-size: cover;
+	}
 
-	.pokemon{
+	.farm{
+		margin: 0 auto;
+		background-image: url('farm_page/farm_background.png');
+		width: 600px;
+		height: 400px;
+		background-size: cover;
+		border-radius: 20px;
+		border: 10px solid white;
+		position: relative;
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: flex-end;
+		align-content: flex-start;
+		flex-wrap: wrap-reverse;
 	}
 }
+
+

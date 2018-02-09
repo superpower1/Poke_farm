@@ -2,33 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .result {
-  border: 1px solid black;
+  border: 1px solid green;
 }
 
 .pagination {
-    font-size: 12px;
+  font-size: 20px;
 }
 
 .pagination > * {
-    margin-right: 0.1em;
-    padding: 0.3em 0.4em;
+  margin-right: 0.1em;
+  padding: 0.3em 0.4em;
 }
 
 .pagination a:hover {
-    background: #202020 none repeat scroll 0 0;
-    text-shadow: 1px 1px 1px #171717;
+  background: #202020 none repeat scroll 0 0;
+  text-shadow: 1px 1px 1px #171717;
 }
 
 .pagination a:active {
-    text-shadow: none;
+  text-shadow: none;
 }
 
 .pagination .current {
-    background: #202020 none repeat scroll 0 0;
-    color: white;
-    text-shadow: 1px 1px 1px #171717;
+  background: #202020 none repeat scroll 0 0;
+  color: white;
+  text-shadow: 1px 1px 1px #171717;
 }
 
 .pagination .disabled {
-    color: #C0C0C0;
+  color: #C0C0C0;
+}
+.hello_user {
+  margin-right: 15px;
+  margin-top: 10px;
+}
+th {
+  font-size: 20px;
+  // padding: 0 20px;
+}
+
+td {
+  font-size: 25px;
+  padding:0 40px 0 40px;
+}
+
+.small-container {
+  margin: 0 auto;
+  text-align: center;
 }

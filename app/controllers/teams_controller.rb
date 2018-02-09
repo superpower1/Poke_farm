@@ -14,11 +14,13 @@ class TeamsController < ApplicationController
 	end
 
 	def create
-		new_team = Team.new
-		new_team.user_id = session[:user_id]
-		new_team.name = params[:name]
-		new_team.save
-		redirect_to "/teams"
+		if params[:name].chomp.gsub(' ', '') != ""
+			new_team = Team.new
+			new_team.user_id = session[:user_id]
+			new_team.name = params[:name]
+			new_team.save
+			redirect_to "/teams"
+		end
 	end
 
 	def get_user_team_api
@@ -27,10 +29,11 @@ class TeamsController < ApplicationController
 		teams.each do |team|
 			tmpData = {
 				id: team.id,
-				name: team.name, 
+				name: team.name,
 				start_time: team.start_time,
 				pokemons: [],
-				destination: team.destination
+				destination: team.destination,
+				destinationName: Habitat.find_by(id: team.destination)
 			}
 			team.pokemons.each do |pokemon|
 				tmpData[:pokemons].push(pokemon)
