@@ -1,18 +1,20 @@
-<div class="habitats">
-  <% @habitats.each do |habitat| %>
-    <div class="habitat">
-      <a href="#teams" data-toggle="modal" >
-        <button data-habitat="<%= habitat.id %>">
-          <%= habitat.identifier %>
-        </button>
-      </a>
-    </div>
-  <% end %>
-</div>
+<main class="habitat-container">
+  <div class="habitats">
+    <% @habitats.each do |habitat| %>
+      <div class="habitat">
+        <a href="#teams" data-toggle="modal" >
+          <button data-habitat="<%= habitat.id %>">
+            <%= habitat.identifier %>
+          </button>
+        </a>
+      </div>
+    <% end %>
+  </div>
 
-<div class="mission">
+  <div class="mission">
+  </div>
+</main>
 
-</div>
 
 <div class="modal fade" id="teams" role="dialog">
   <div class="modal-dialog">
@@ -34,6 +36,7 @@
   $('.habitat button').on('click', e=>{
     $('.teams').html("");
     var destination = e.target.dataset.habitat;
+    var destinationName = e.target.textContent;
     console.log(destination);
     var url = '/api/teams/get_user_team_api?name=<%= session[:user_id] %>'
 
@@ -68,10 +71,15 @@
             return response.json();
           })
           .then(function(team){
-            console.log("success")
-            console.log(team.id + "is on the trip to" + team.destination)
+            console.log("success");
+            const feedback = `${team.name} is on the trip to ${destinationName}`;
+            const $feedback = $('<div>')
+              .text(feedback)
+              .attr('id', `team-${team.id}`)
+            $('.mission').append($feedback);
             setTimeout(()=>{
               pokemonGet(team);
+              $(`#team-${team.id}`).remove()
             },15000)
           })
           .catch(function(error) {
@@ -128,8 +136,14 @@
         if(timePeriod > 15000){
           pokemonGet(teams[num]);
         } else {
+          const feedback = `${teams[num].name} is on the trip to ${teams[num].destinationName}`;
+          const $feedback = $('<div>')
+            .text(feedback)
+            .attr('id', `team-${teams[num].id}`)
+          $('.mission').append($feedback);
           setTimeout(()=>{
             pokemonGet(teams[num]);
+            $(`#team-${teams[num].id}`).remove()
           },timePeriod)
         }
       }
