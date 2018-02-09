@@ -56,6 +56,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def login
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
+     session[:user_id] = @user.id
+      redirect_to '/my_pokemons'
+   else
+      render '/pages/home'
+   end
+
+  end
+
 
   def show
    @user = User.find(params[:id])
