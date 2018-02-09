@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :habitats, only: [:index]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  get '/login', to: 'users#login'
   get '/api_index', to: 'species#api_index'
   post '/sessions', to: 'sessions#create'
   delete '/sessions', to: 'sessions#destroy'
