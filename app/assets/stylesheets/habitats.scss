@@ -13,6 +13,7 @@
 }
 
 .habitat{
+  position: relative;
 	background-color: rgba(255,255,255,0.3);
 	border: 3px solid white;
 	font-size: 3em;
@@ -20,7 +21,7 @@
 	a{
 		display: block;
 		margin: 0 auto;
-		color:white;
+		color: white;
 		width: 100%;
 		height: 100%;
 
@@ -58,4 +59,21 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  position: relative;
+}
+
+.teams {
+  display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.teams button {
+  margin: 10px;
+}
+
+.sidebar-tag {
+  width: 80%;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, .5);
+  border-radius: 5px;
 }
