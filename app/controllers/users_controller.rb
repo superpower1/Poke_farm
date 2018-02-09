@@ -11,51 +11,24 @@ class UsersController < ApplicationController
     user.ball = 5
     user.money = 1000
 
-
-    newpokemons = [
-      {
-      species_id: 1,
-      nickname: "frank",
-      level: 1,
-      exp: 0,
-      growth_rate: "medium-slow"
-      },
-      {
-      species_id: 4,
-      nickname: 'charm',
-      level: 1,
-      exp: 0,
-      growth_rate: "medium-slow"
-      },
-      {
-      species_id: 7,
-      nickname: 'tin',
-      level: 1,
-      exp: 0,
-      growth_rate: "medium-slow"
-      }
-    ]
-
-
     if user.save
       session[:user_id] = user.id
-      newpokemons.each do |poke|
-        mypokemon = MyPokemon.new
-        mypokemon.species_id = poke[:species_id]
-        mypokemon.nickname = poke[:nickname]
-        mypokemon.level = poke[:level]
-        mypokemon.exp = poke[:exp]
-        mypokemon.growth_rate = poke[:growth_rate]
-        mypokemon.user_id = session[:user_id]
-        mypokemon.save
-      end
-
+      User.create_user_pokemon(session[:user_id])
       redirect_to '/my_pokemons'
     else
       render '/users/new'
     end
   end
 
+  def login
+     user = User.find_by(email: params[:email])
+     if user && user.authenticate(params[:password])
+       session[:user_id] = user.id
+        redirect_to '/my_pokemons'
+     else
+        render '/pages/home'
+     end
+  end
 
   def show
    @user = User.find(params[:id])
