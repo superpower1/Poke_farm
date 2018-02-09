@@ -1,8 +1,8 @@
 <% if !session[:user_id] %>
-<form class="" action="/sessions" method="post">
+<form class="" action="/login">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <label for="">Email</label>
-  <input type="text" name="email" >
+  <input type="text" name="email">
   <label for="">Password</label>
   <input type="password" name="password" >
   <button class="btn btn-primary">Log In</button>

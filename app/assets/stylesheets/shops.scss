@@ -2,97 +2,161 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.shop_container {
+
+.shopTitle {
+	font-size: 60px;
+
+}
+#container { /* Use this to position the entire tab module */
+    margin: 0 auto; 
+    width: 1200px; 
+    margin-top: 4%;
 	display: flex;
 	flex-direction: row;
-	width: 90%;
-	padding: 20px;
+	width: 100%;
+	padding: 1em;
+	background-image: url("http://paper-backgrounds.com/textureimages/2012/12/purple-wall-texture-vintage-background-500x333.jpg");
+	background-position: center;
+	border: 1.5px solid #b7533d;
+	border-radius: 2em;
+	opacity: 0.7;
+	color: white;
+}
+
+.allMoney {
+	font-family: 'Varela Round', sans-serif;
+	font-size: 60px;
+	display: flex;
+	justify-content: center;
+}
+.allMoney img {
+	height: 85px;
+	width: 60px;
+}
+
+#chaChing {
+	font-size: 60px;
+}
+#tabBar1 {
+	/*border: 2px solid orange;*/
+	width: 1080px;
+	display: flex;
+	flex-wrap: wrap;
+	padding-left: 10px;
+	margin: 0 auto;
+	font-size: 20px;
+	font-family: 'Varela Round', sans-serif;
 
 }
-.buyBox {
-	border: 2px solid orange;
-	width: 55%;
-	display: grid;
-	 /*flex-wrap: wrap;*/
- /* grid-gap: 5px 5px;
-  grid-template-columns: auto auto ;*/
- /* //background-color: #2196F3;
-  flex-direction: column;
-  padding: 5px;
-  padding-right: 10spx;*/
-}
-.pokeCard {
-	border: 2px solid darkblue;
-	width: 40%;
-	background-color: rgba(255, 255, 255, 0.8);
-  border: 0.5px solid rgba(0, 0, 0, 0.8);
-  padding: 2px;
-  font-size: 8px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
 
-}
-.imgNDetail {
-
-}
-.itemsBuyImg {
-
-}
-.nameAndPrice {
+#tabBar2 {
+	width: 1080px;
+	height: 300px;
+	
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+	/*padding: 10px;*/
+	position: relative;
+	border: 1px solid lightgray;
+	border-radius: 0.8em;
+}
+#tabBar2 .showNum {
+	position: absolute;
+	right: 15px;
+	bottom: 25px;
+
+}
+
+.pokeCard {
+	border-top: 5px;
+	padding: 10px;
+	margin-right: 20px;
+
+	border: 2px solid darkblue;	
+	/*background-color: #12125a;*/
+	margin-bottom: 3%;
+	border-radius: 0.8em;
+	/*float: left;*/
+	transition: .3s;
+	line-height: 1em;
+
+	width: 500px;
+	height: 330px;
+	position: relative;
+	border: 1px solid lightgray;
+	border-radius: 0.5em;
+	
 	text-align: center;
+	position: relative;
+	
 }
-.pokeName {
-
+.pokeCard:hover {
+  transform: translateY(0.3em);
 }
-.dorllarSign {
-
+.nameAndPrice {
+	border: 0.5px solid lightgray;
+	border-style: none;
 }
-/*.itemBuyPrice {
-
-}*/
-.itemBuyPrice {
-
-}
-.itemBuyQuantity {
-
-}
-
-
-
-/*.itemBuyValue {
-
-}
-*/
-
-
-
-
 .btnBox {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: center;
+	
+	align-items: center;
+	
 }
-.sellBox {
-	border: 2px solid darkblue;
-	width: 35%;
-	padding-left: 15px;
+.minusBtn, .addBtn {
+	user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  transition: .5s;
+  /*line-height: 1; */
+}
+.minusBtn, .addBtn:hover {
+  color: green;
+
 }
 
 
-.sellCheckbox {
-	border: 1px solid darkgray;
-	border-top: 1px solid white;
+.itemCounter {
+	font-size: 3em;
+}
+.pokeCardForm {
+	
 	display: flex;
-	flex-direction: row;
-	text-align: center;
-	vertical-align: middle;
-	line-height: 90px;
+	justify-content: flex-end;
+	padding-right: 20px;
 }
-
+.pokeCard p .dorllarSign{
+	position: absolute;
+	right: 60px;
+	bottom: 10px;  
+	font-size: 2em;
+}
+.pokeCard p .itemBuyValue {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;  
+	font-size: 2em;
+}
+.itemBuyQuantity {
+	font-size: 20px;
+}
+.showNum {
+	display: inline;
+}
 .totalShow {
 	
+}
+.num {
+	width: 50px;
+}
+
+
+#sellCheckBox {
+	display: flex;
+	flex-direction: column;
+	font-size: 20px;
+
 }
