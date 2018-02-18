@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   end
 
   def create
+    user = User.find_by(email: params[:email])
+    if !user
     user = User.new
     user.name = params[:name]
     user.email = params[:email]
@@ -11,12 +13,15 @@ class UsersController < ApplicationController
     user.ball = 5
     user.money = 1000
 
-    if user.save
-      session[:user_id] = user.id
-      User.create_user_pokemon(session[:user_id])
-      redirect_to '/my_pokemons'
+      if user.save
+        session[:user_id] = user.id
+        User.create_user_pokemon(session[:user_id])
+        redirect_to '/my_pokemons'
+      else
+        render '/users/new'
+      end
     else
-      render '/users/new'
+      render '/pages/home'
     end
   end
 
