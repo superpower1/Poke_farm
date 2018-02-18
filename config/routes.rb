@@ -13,7 +13,13 @@ Rails.application.routes.draw do
   delete '/sessions', to: 'sessions#destroy'
   root 'pages#home'
 
-  get 'api/teams/get_user_team_api', to: 'teams#get_user_team_api'
-  post 'api/habitats/catched_pokemon_api', to: 'habitats#get_catched_pokemon_api'
-  post 'api/habitats/start_catch_pokemon_api', to: 'habitats#start_catch_pokemon_api'
+  # get 'api/teams/get_user_team_api', to: 'teams#get_user_team_api'
+  # post 'api/habitats/catched_pokemon_api', to: 'habitats#get_catched_pokemon_api'
+  # post 'api/habitats/start_catch_pokemon_api', to: 'habitats#start_catch_pokemon_api'
+  
+  namespace :api do
+    resources :teams, only: [:index]
+    resources :habitats, only: [:create, :update] #/api/habitats
+  end
+
 end
