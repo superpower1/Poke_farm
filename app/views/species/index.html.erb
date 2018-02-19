@@ -34,10 +34,6 @@
 	<%= will_paginate @species %>
 </div>
 
-<!-- <script
-  src="http://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script> -->
 <script type="text/javascript">
 	$('button').click(function() {
 		var $list = $('.result')
@@ -51,10 +47,10 @@
 		$.ajax(options).done(function(response) {
 			console.log(response.length)
 			var tag = ['name','height','weight','color','shape','habitat','image']
-			var $tr = $('<tr>').addClass('pop-tr'); //create a new <tr></tr>
+			var $tr = $('<tr>').addClass('pop-tr');
 			for(i=0; i<tag.length; i++){
 			    var content = '<th>' + tag[i]+ '</th>'
-					$tr.append(content) //add <th></th> to <tr></tr>
+					$tr.append(content)
 			 }
 			 var $table = $('<table>').addClass('pop-table')
 			 $table.append($tr);
@@ -79,9 +75,9 @@
 						content = $('<td>').append($img)
 			 			$tr_1.append(content)
 						$table.append($tr_1);
-			 }//for
+			 }
 			 $('#result-box').append($table);
 			 $('#result-box').addClass('result');
-    }); //$.ajax
-  });//$('button').click
+    });
+  });
 </script>
