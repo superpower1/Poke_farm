@@ -40,7 +40,7 @@
     var destination = e.target.dataset.habitat;
     var destinationName = e.target.textContent;
     console.log(destination);
-    var url = '/api/teams/get_user_team_api?name=<%= session[:user_id] %>'
+    var url = '/api/teams/?name=<%= session[:user_id] %>'
 
     fetch(url)
     .then(function(response) {
@@ -58,13 +58,13 @@
         .val(num)
         .addClass('btn btn-primary')
         teamBtn.click(function(event){
-          url = '/api/habitats/start_catch_pokemon_api';
+          url = '/api/habitats/'+ destination;
           data = {
             team_id:event.target.value,
             destination: destination
           };
           fetch(url, {
-            method: "POST",
+            method: "PUT",
             body: JSON.stringify(data),
             headers: {
               "Content-Type": "application/json"
@@ -101,7 +101,7 @@
 
   const pokemonGet = team => {
     //get pokemon back
-    url = 'api/habitats/catched_pokemon_api';
+    url = "api/habitats/";
     data = {
       "team_id": team.id,
       "destination": team.destination
@@ -125,7 +125,7 @@
     })
   }
 
-  var url = '/api/teams/get_user_team_api?name=<%= session[:user_id] %>'
+  var url = '/api/teams/?name=<%= session[:user_id] %>'
   fetch(url)
   .then(function(response) {
     return response.json();
