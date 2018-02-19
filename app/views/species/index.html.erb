@@ -2,7 +2,7 @@
 	<h1>Pokemons</h1>
 	<div class="search">
 			<input class="input form" type="text" name="identifier" placeholder="Input a pokemon name">
-			<button class="btn btn-primary">Search</button>
+			<button class="btn btn-primary search-btn">Search</button>
 	</div>
 
 	<div id="result-box">
@@ -35,9 +35,13 @@
 </div>
 
 <script type="text/javascript">
-	$('button').click(function() {
+	$('.search-btn').click(function() {
 		var $list = $('.result')
-    $list.children().remove()
+    $list.children().remove();
+
+		if (!$('.input').val()) {
+			return
+		}
 
 		var options = {
 			url: '/api/species/'+ $('.input').val(),
